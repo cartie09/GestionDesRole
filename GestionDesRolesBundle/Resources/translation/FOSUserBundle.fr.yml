@@ -1,0 +1,12 @@
+
+# Registration
+registration:
+    email:
+        subject: Bienvenue %username% !
+        message: |
+            Bonjour %username% !
+
+            Pour valider votre compte utilisateur, merci de vous rendre sur %confirmationUrl%
+
+            Cordialement,
+            L'équipe.

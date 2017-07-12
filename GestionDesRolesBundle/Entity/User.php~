@@ -1,0 +1,213 @@
+<?php
+
+namespace boxiweb\UserBundle\Entity;
+
+use FOS\UserBundle\Model\User as BaseUser;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * user
+ *
+ * @ORM\Table(name="user")
+ * @ORM\Entity(repositoryClass="boxiweb\UserBundle\Repository\userRepository")
+ */
+class user extends BaseUser {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var string $family_name
+     *
+     * @ORM\Column(name="family_name", type="string", length=255, nullable=true)
+     */
+    private $family_name;
+
+    /**
+     * @var string $last_name
+     *
+     * @ORM\Column(name="last_name", type="string", length=255)
+     */
+    private $last_name;
+
+    /**
+     * @var string $nom
+     *
+     * @ORM\Column(name="nom", type="string", length=255)
+     */
+    private $nom;
+
+    /**
+     * @var string $prenom
+     *
+     * @ORM\Column(name="prenom", type="string", length=255)
+     */
+    private $prenom;
+
+    /**
+     * @var string $first_name
+     *
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
+     */
+    private $first_name;
+
+    /**
+     * @var string $tel
+     *
+     * @ORM\Column(name="tel", type="string", length=45, nullable=true)
+     */
+    private $tel;
+
+    /**
+     * @var \DateTime $created
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    protected $created;
+
+    /**
+     * @var \DateTime $lastActivity
+     *
+     * @ORM\Column(name="lastActivity", type="datetime")
+     */
+    protected $lastActivity;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="boxiweb\monhlmBundle\Entity\Logement")
+     * @ORM\JoinColumn(nullable=true, onDelete="SET NULL")
+     */
+    protected $logement;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="boxiweb\UserBundle\Entity\Group")
+     * @ORM\JoinTable(name="fos_user_user_group",
+     *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     * )
+     */
+    protected $groups;
+
+    /**
+     * @ORM\Column(type="integer", length=6, options={"default":0})
+     */
+    protected $loginCount = 0;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $firstLogin;
+
+    public function getLoginCount() {
+        return $this->loginCount;
+    }
+
+    public function getFirstLogin() {
+        return $this->firstLogin;
+    }
+
+    public function setLoginCount($loginCount) {
+        $this->loginCount = $loginCount;
+    }
+
+    public function setFirstLogin(\DateTime $firstLogin) {
+        $this->firstLogin = $firstLogin;
+    }
+
+        
+    public function getGroups() {
+        return $this->groups;
+    }
+
+    public function setGroups($groups) {
+        $this->groups = $groups;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getFamily_name() {
+        return $this->family_name;
+    }
+
+    public function getFirst_name() {
+        return $this->first_name;
+    }
+
+    public function getTel() {
+        return $this->tel;
+    }
+
+    public function getCreated() {
+        return $this->created;
+    }
+
+    public function getLastActivity() {
+        return $this->lastActivity;
+    }
+
+    public function getLast_name() {
+        return $this->last_name;
+    }
+
+    public function setLast_name($last_name) {
+        $this->last_name = $last_name;
+    }
+
+    public function getLogement() {
+        return $this->logement;
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function setFamily_name($family_name) {
+        $this->family_name = $family_name;
+    }
+
+    public function setFirst_name($first_name) {
+        $this->first_name = $first_name;
+    }
+
+    public function setTel($tel) {
+        $this->tel = $tel;
+    }
+
+    public function setCreated(\DateTime $created) {
+        $this->created = $created;
+    }
+
+    public function setLastActivity(\DateTime $lastActivity) {
+        $this->lastActivity = $lastActivity;
+    }
+
+    public function getNom() {
+        return $this->nom;
+    }
+
+    public function getPrenom() {
+        return $this->prenom;
+    }
+
+    public function setNom($nom) {
+        $this->nom = $nom;
+    }
+
+    public function setPrenom($prenom) {
+        $this->prenom = $prenom;
+    }
+
+    public function setLogement($logement) {
+        $this->logement = $logement;
+    }
+
+}
+
+// php app/console cache:clear --env=prod

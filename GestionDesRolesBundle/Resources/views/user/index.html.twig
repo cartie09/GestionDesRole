@@ -1,0 +1,151 @@
+
+
+{% extends 'base.html.twig"' %}
+
+{% block title %}{{ '%entity% list'|trans({'%entity%': 'user'}, 'admin') }} - {{ parent() }}{% endblock %}
+{% macro thead(name, field, label) %}
+    {% spaceless %}
+      
+    {% endspaceless %}
+{% endmacro %}
+
+{% from _self import thead %}
+ 
+{% block body %}
+{# {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+    Connecté en tant que {{ app.user.username }}
+    -
+  
+    
+    <a href="{{ path('fos_user_security_logout') }}">Deconnexion</a>
+{% else %}
+    <a href="{{ path('fos_user_register') }}">S'inscrire</a>
+{% endif %} #} 
+
+    {#  {% if is_granted("IS_AUTHENTICATED_FULLY") %} 
+    <a href="{{ path('fos_user_profile_show') }}">{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }}</a> |
+    <a href="{{ path('fos_user_security_logout') }}">
+        {{ 'layout.logout'|trans([], 'FOSUserBundle') }}
+    </a>
+{% else %}
+  
+    <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans([], 'FOSUserBundle') }}</a> 
+    <a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans([], 'FOSUserBundle') }}</a>
+{% endif %} #} 
+    
+   
+    
+<div class="monbr">
+   <br><br><br>
+    <h1>{{ '%entity% list'|trans({'%entity%': 'user'}, 'admin') }}</h1>
+    <br>
+</div>
+<div class="monbr">
+    <br>
+    {% include 'boxiwebUserBundle:user:filter.html.twig' with {form: form} %}
+    <br><br>
+</div>
+
+
+    
+    
+
+    
+ 
+    {# {% block  menu1 %}
+{{ knp_menu_render('main') }}
+{% endblock menu1%}#}
+    
+   
+    <table class="table table-striped table-hover table-bordered records_list">
+        <thead>
+            <tr>
+                <th scope="col">{{ thead('user', 'username', 'Username') }}nom</th>
+                <th scope="col">{{ thead('user', 'usernameCanonical', 'Usernamecanonical') }}Usernamecanonical</th>
+                <th scope="col">{{ thead('user', 'email', 'Email') }}Email</th>
+                <th scope="col">{{ thead('user', 'emailCanonical', 'Emailcanonical') }}Emailcanonical</th>
+                <th scope="col">{{ thead('user', 'enabled', 'Enabled') }}Enabled</th>
+                <th scope="col">{{ thead('user', 'salt', 'Salt') }}Salt</th>
+                <th scope="col">{{ thead('user', 'password', 'Password') }}password</th>
+                <th scope="col">{{ thead('user', 'lastLogin', 'Lastlogin') }}Lastlogin</th>
+                <th scope="col">{{ thead('user', 'locked', 'Locked') }}Locked</th>
+                <th scope="col">{{ thead('user', 'expired', 'Expired') }}Expired</th>
+                <th scope="col">{{ thead('user', 'expiresAt', 'Expiresat') }}Expiresat</th>
+                <th scope="col">{{ thead('user', 'confirmationToken', 'Confirmationtoken') }}Confirmationtoken</th>
+                <th scope="col">{{ thead('user', 'passwordRequestedAt', 'Passwordrequestedat') }}Passwordrequestedat</th>
+                <th scope="col">{{ thead('user', 'roles', 'Roles') }}Roles</th>
+                <th scope="col">{{ thead('user', 'credentialsExpired', 'Credentialsexpired') }}Credentialsexpired</th>
+                <th scope="col">{{ thead('user', 'credentialsExpireAt', 'Credentialsexpireat') }}Credentialsexpireat</th>
+                <th scope="col">{{ thead('user', 'familyName', 'Familyname') }}vFamilyname')</th>
+                <th scope="col">{{ thead('user', 'lastName', 'Lastname') }}Lastname</th>
+                <th scope="col">{{ thead('user', 'firstName', 'Firstname') }}Firstname</th>
+                <th scope="col">{{ thead('user', 'tel', 'Tel') }}Tel</th>
+                <th scope="col">{{ thead('user', 'created', 'Created') }}Created</th>
+                <th scope="col">{{ thead('user', 'lastactivity', 'Lastactivity') }}Lastactivity</th>
+                <th scope="col">{{ thead('user', 'nom', 'Nom') }}Nom</th>
+                <th scope="col">{{ thead('user', 'prenom', 'Prenom') }}Prenom</th>
+                <th scope="col">{{ thead('user', 'loginCount', 'Logincount') }}Logincount</th>
+                <th scope="col">{{ thead('user', 'firstLogin', 'Firstlogin') }}Firstlogin</th>
+                <th scope="col">{{ thead('user', 'id', 'Id') }}</th>
+                <th scope="col">{{ 'Actions'|trans({}, 'admin') }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in paginator %}
+                <tr>
+                    <td><a href="{{ path('admin_users_show', {id: user.id}) }}">{{ user.username }}</a></td>
+                    <td>{{ user.usernameCanonical }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.emailCanonical }}</td>
+                    <td>{% if user.enabled %}<i class="fa fa-check-square-o"></i>{% else %}<i class="fa fa-square-o"></i>{% endif %}</td>
+                    <td>{{ user.salt }}</td>
+                    <td>{{ user.password }}</td>
+                    <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if user.locked %}<i class="fa fa-check-square-o"></i>{% else %}<i class="fa fa-square-o"></i>{% endif %}</td>
+                    <td>{% if user.expired %}<i class="fa fa-check-square-o"></i>{% else %}<i class="fa fa-square-o"></i>{% endif %}</td>
+                    <td>{% if user.expiresAt %}{{ user.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ user.confirmationToken }}</td>
+                    <td>{% if user.passwordRequestedAt %}{{ user.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ user.roles|join(', ') }}</td>
+                    <td>{% if user.credentialsExpired %}<i class="fa fa-check-square-o"></i>{% else %}<i class="fa fa-square-o"></i>{% endif %}</td>
+                    <td>{% if user.credentialsExpireAt %}{{ user.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    
+                    
+                     
+                    <td>{{ user.tel }}</td>
+                    <td>{% if user.created %}{{ user.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if user.lastactivity %}{{ user.lastactivity|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ user.nom }}</td>
+                    <td>{{ user.prenom }}</td>
+                    <td>{{ user.loginCount }}</td>
+                    <td>{% if user.firstLogin %}{{ user.firstLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{{ user.id }}</td>
+                    <td>
+                        <div class="btn-group">
+                            <a class="btn btn-default btn-sm" href="{{ path('admin_users_show', {id: user.id}) }}">
+                                <i class="fa fa-file-o"></i> {{ 'show'|trans({}, 'admin') }}
+                            </a>
+                            <a class="btn btn-default btn-sm" href="{{ path('admin_users_edit', {id: user.id}) }}">
+                                <i class="fa fa-edit"></i> {{ 'edit'|trans({}, 'admin') }}
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    {{ knp_pagination_render(paginator) }}
+    <br>
+    La totalité des menbres est de {{entitiesLength}} adherrents
+     <br>
+    <ul class="new_entry list-unstyled">
+        <li>
+            <a class="btn btn-info" href="{{ path('admin_users_new') }}">
+                <i class="fa fa-plus"></i> {{ 'Create a new entry'|trans({}, 'admin') }}
+            </a>
+        </li>
+    </ul>
+    
+{% endblock %}
+ 

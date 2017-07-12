@@ -1,0 +1,97 @@
+{% extends "base.html.twig" %}
+ {% form_theme edit_form 'boxiwebUserBundle:Form:foundation_5_layout.html.twig' %} 
+{% block title %}{{ '%entity% edit'|trans({'%entity%': 'user'}, 'admin') }} - {{ parent() }}{% endblock %}
+
+{% block body %}
+   
+ <div class="monbr">
+   <br><br><br>
+    <h1>{{ '%entity% edit'|trans({'%entity%': 'user'}, 'admin') }}</h1>
+    <br>
+</div>
+  
+
+
+     {# {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
+     {% for flashMessage in app.session.flashbag.get('notice') %}
+
+<div class="alert alert-success">
+    {{ flashMessage }}
+</div>
+
+{% endfor %}#}
+
+    {{ form_start(edit_form) }}
+    
+    
+        {{ form_widget(edit_form) }}
+    
+   
+        <p>
+            <button class="btn btn-primary" type="submit"><i class="fa fa-edit"></i> {{ 'Edit'|trans({}, 'admin') }}</button>
+        </p>
+    {{ form_end(edit_form) }}
+
+    {{ form_start(delete_form) }}
+        {{ form_widget(delete_form) }}
+
+        <div class="btn-group record_actions">
+
+            <a class="btn btn-info" href="{{ path('admin_users') }}">
+                <i class="fa fa-list"></i> {{ 'Back to the list'|trans({}, 'admin') }}
+            </a>
+
+            <button class="btn btn-danger" id="js-delete" type="submit"><i class="fa fa-trash-o"></i> {{ 'Delete'|trans({}, 'admin') }}</button>
+
+        </div>
+
+        <input name="modal" type="hidden" value="0">
+    {{ form_end(delete_form) }}
+
+    <div id="delete_confirm" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    
+                    
+
+
+                    <h3>{{ 'Confirm delete'|trans({}, 'admin') }}</h3>
+                </div>
+                <div class="modal-body">
+                    <p>{{ 'You are about to delete an item'|trans({}, 'admin') }}, {{ 'this procedure is irreversible'|trans({}, 'admin') }}.</p>
+                    <p>{{ 'Do you want to proceed?'|trans({}, 'admin') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger">{{ 'Yes'|trans({}, 'admin') }}</button>
+                    <button class="btn btn-default" data-dismiss="modal">{{ 'No'|trans({}, 'admin') }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+     {% block javascripts %}
+{{ parent() }}
+<script> 
+    (function($) {
+
+        $('#js-delete').on('click', function(){
+            $('#deleteForm').submit();
+            return false;
+        });
+    })(jQuery);
+</script>
+{% endblock %}   
+        
+        
+        
+{% endblock %}

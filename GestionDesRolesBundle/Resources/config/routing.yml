@@ -1,0 +1,116 @@
+# app/config/routing.yml
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+ 
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
+ 
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+ 
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+ 
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group
+#fos_user_security_logout:
+#    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+#    prefix: /logout
+
+
+ 
+admin_groups:
+    pattern: /admin/groups
+    defaults: { _controller: boxiwebUserBundle:Group:index }
+admin_groups_show:
+    pattern: /admin/group/{id}/show
+    defaults: { _controller: boxiwebUserBundle:Group:show }
+admin_groups_new:
+    pattern: /admin/group/new
+    defaults: { _controller: boxiwebUserBundle:Group:new }
+admin_groups_create:
+    pattern: /admin/group/create
+    defaults: { _controller: boxiwebUserBundle:Group:create }
+admin_groups_edit:
+    pattern: /admin/group/{id}/edit
+    defaults: { _controller: boxiwebUserBundle:Group:edit }
+admin_groups_update:
+    pattern: /admin/group/{id}/update
+    defaults: { _controller: boxiwebUserBundle:Group:update }  
+admin_groups_sort:
+    pattern: /admin/group/sort
+    defaults: { _controller: boxiwebUserBundle:Group:sort }  
+admin_groups_delete:
+    pattern: /admin/group/{id}/delete
+    defaults: { _controller: boxiwebUserBundle:Group:delete }  
+
+   
+    
+admin_users:
+    pattern: /admin/users
+    defaults: { _controller: boxiwebUserBundle:user:index }
+admin_users_show:
+    pattern: /admin/users/{id}/show
+    defaults: { _controller: boxiwebUserBundle:user:show }
+admin_users_new:
+    pattern: /admin/users/new
+    defaults: { _controller: boxiwebUserBundle:user:new } 
+admin_users_create:
+    pattern: /admin/users/create
+    defaults: { _controller: boxiwebUserBundle:user:create }
+admin_users_edit:
+    pattern: /admin/users/{id}/edit
+    defaults: { _controller: boxiwebUserBundle:user:edit }
+admin_users_update:
+    pattern: /admin/users/{id}/update
+    defaults: { _controller: boxiwebUserBundle:user:update }  
+admin_v_sort:
+    pattern: /admin/users/sort
+    defaults: { _controller: boxiwebUserBundle:user:sort }  
+admin_users_delete:
+    pattern: /admin/users/{id}/delete
+    defaults: { _controller: boxiwebUserBundle:user:delete }  
+
+ 
+
+
+boxiwebAccueil:
+    pattern:  /
+    defaults: { _controller: "boxiwebmonhlmBundle:Default:index"}
+boxiwebAccueilUser:
+    pattern:  /user
+    defaults: { _controller: "boxiwebmonhlmBundle:aut:index"}    
+   
+#myapp_acteur_lister:
+#  pattern: /acteur/
+#  defaults: { _controller: MyAppFilmothequeBundle:Acteur:lister }
+#myapp_acteur_ajouter:
+#  pattern: /admin/acteur/ajouter
+#  defaults: { _controller: MyAppFilmothequeBundle:Acteur:editer }
+#myapp_acteur_modifier:
+#  pattern: /admin/acteur/modifier/{id}
+#  defaults: { _controller: MyAppFilmothequeBundle:Acteur:editer }
+#myapp_acteur_supprimer:
+#  pattern: /admin/acteur/supprimer/{id}
+#  defaults: { _controller: MyAppFilmothequeBundle:Acteur:supprimer }
+#myapp_film_lister:
+#  pattern: /film/
+#  defaults: { _controller: MyAppFilmothequeBundle:Film:lister }
+#myapp_categorie_list:
+#    pattern:  /categorie/{page}
+#    defaults: { _controller: MyAppFilmothequeBundle:Categorie:List }
+#myapp_film_ajouter:
+#  pattern: film/ajouter
+#  defaults: { _controller: MyAppFilmothequeBundle:Film:editer }
+#myapp_acteur_rechercher:
+#  pattern: /acteur/rechercher
+#  defaults: { _controller: MyAppFilmothequeBundle:Acteur:rechercher }
+#  requirements:
+#    _method: POST

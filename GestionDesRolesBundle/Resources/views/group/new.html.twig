@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+ {% form_theme form 'boxiwebUserBundle:Form:bootstrap_3_horizontal_layout.html.twig' %} 
+{% block title %}{{ '%entity% creation'|trans({'%entity%': 'Group'}, 'admin') }} - {{ parent() }}{% endblock %}
+
+{% block body %}
+   <div class="monbr">
+   <br><br><br>
+    <h1>{{ '%entity% list'|trans({'%entity%': 'Group'}, 'admin') }}</h1>
+    <br>
+</div>
+
+    {{ form_start(form, {action: path('admin_groups_create')}) }}
+        {{ form_widget(form) }}
+        <p>
+            <button class="btn btn-primary" type="submit">{{ 'Create'|trans({}, 'admin') }}</button>
+        </p>
+    {{ form_end(form) }}
+
+        
+        <div class="btn-group record_actions">
+
+            <a class="btn btn-info" href="{{ path('admin_groups') }}">
+                <i class="fa fa-list"></i> {{ 'Back to the list'|trans({}, 'admin') }}
+            </a>
+
+
+        </div>
+
+
+{% endblock %}
