@@ -22,5 +22,5 @@
             "boxiweb\\Userbundle" : ""
         }
     },
-    "target-dir" : "boxiweb/Userbundle",
+    "target-dir" : "boxiweb/Userbundle"
 }
